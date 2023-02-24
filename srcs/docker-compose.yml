@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+
+    nginx:
+        build: requirements/nginx
+        container_name: nginx
+        #depends_on:
+        #    - wordpress
+        volumes:
+            - /home/anggonza/Inception/srcs/requirements/nginx/conf/nginx.conf:/etc/nginx/nginx.conf
+            - /home/anggonza/Inception/srcs/requirements/nginx/tools:/etc/nginx/ssl
+        ports:
+            - 443:433
+        restart: always
+        networks:
+            - inception
+    mariadb:
+        build: requirements/mariadb
+        container_name: mariadb
+        volumes:
+            - /home/anggonza/data/mysql:/var/lib/mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+            - MYSQL_DATABASE=${MYSQL_DATABASE}
+            - MYSQL_USER=${MYSQL_USER}
+            - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+        env_file:
+            - .env
+
+networks:
+    inception:
+        driver: bridge
