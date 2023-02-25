@@ -1,7 +1,6 @@
-FROM alpine:3.14
+FROM debian:buster
 
-RUN apk add mariadb mariadb-client && rm -rf /var/cache/apk/*
-
+RUN apt-get update; apt-get install mariadb-server -y
 EXPOSE 3306
 
 COPY conf/my.cnf /var/lib/mysql/my.cnf
