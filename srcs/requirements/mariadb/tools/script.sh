@@ -12,3 +12,4 @@ if [ ! -d "/var/lib/mysql" ]; then
 fi
 
 mysqld_safe
+
