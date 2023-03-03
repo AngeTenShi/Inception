@@ -1,11 +1,13 @@
- wordpress:
+    wordpress:
         build: requirements/wordpress
         container_name: wordpress
+        volumes:
+            - /home/anggonza/data/wp-data:/var/www/html
+            - /home/anggonza/data/mysql:/var/lib/mysql 
         env_file:
             - .env
         networks:
             - inception
-
     nginx:
         build: requirements/nginx
         container_name: nginx

@@ -8,11 +8,24 @@ services:
             - /home/anggonza/data/mysql:/var/lib/mysql
         env_file:
             - .env
+        environment:
+            - MYSQL_DATABASE=value
         ports:
             - 3306:3306
         networks:
             - inception
-   
+    wordpress:
+        build: requirements/wordpress
+        container_name: wordpress
+        volumes:
+            - /home/anggonza/data/wp-data:/var/www/html
+            - /home/anggonza/data/mysql:/var/lib/mysql 
+        env_file:
+            - .env
+        depends_on:
+            - mariadb
+        networks:
+            - inception
 networks:
     inception:
         driver: bridge

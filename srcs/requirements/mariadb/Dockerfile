@@ -1,13 +1,13 @@
 FROM debian:buster
 
-RUN apt-get update; apt-get install mariadb-server -y
+RUN apt-get update -y; apt-get install mariadb-server mariadb-client -y
+    
 EXPOSE 3306
 
-COPY conf/my.cnf /var/lib/mysql/my.cnf
+COPY conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 COPY tools/script.sh script.sh
+COPY tools/config.sql config.sql
 
+RUN service mysql start && mysql < config.sql
 
-LABEL version="1.0"
-LABEL description="MariaDB Server"
-
-CMD ["sh", "script.sh"]
+CMD mysqld --datadir=/var/lib/mysql
