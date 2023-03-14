@@ -6,6 +6,8 @@
             - /home/anggonza/data/mysql:/var/lib/mysql 
         env_file:
             - .env
+        depends_on:
+            - mariadb
         networks:
             - inception
     nginx:

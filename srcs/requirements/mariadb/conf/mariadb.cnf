@@ -1,34 +1,13 @@
-# The MariaDB configuration file
-#
-# The MariaDB/MySQL tools read configuration files in the following order:
-# 0. "/etc/mysql/my.cnf" symlinks to this file, reason why all the rest is read.
-# 1. "/etc/mysql/mariadb.cnf" (this file) to set global defaults,
-# 2. "/etc/mysql/conf.d/*.cnf" to set global options.
-# 3. "/etc/mysql/mariadb.conf.d/*.cnf" to set MariaDB-only options.
-# 4. "~/.my.cnf" to set user-specific options.
-#
-# If the same option is defined multiple times, the last one will apply.
 
-# Server Option Groups
-
-#
-# This group is read both by the client and the server
-# use it for options that affect everything
-# Options read by all MariaDB client programs and the MariaDB Server. This is useful for options like socket and port, which is common between the server and the clients.
 [client-server]
-# Port or socket location where to connect
 port = 3306
-# chemin par défaut du socket pour communiquer
 socket = /run/mysqld/mysqld.sock
 
-# Options read by mysqld, which includes both MariaDB Server and MySQL Server.
 [mysqld]
-
 user        = mysql
 pid-file    = /run/mysqld/mysqld.pid
-socket      = /run/mysqld/mysqld.sock #chemin par défaut du socket pour communiquer
-datadir     = /var/lib/mysql #préciser notre dossier qui stockera notre base de données
+socket      = /run/mysqld/mysqld.sock
+datadir     = /var/lib/mysql
 basedir     = /usr
-#bind_address=* # toutes les IP du réseau peuvent se connecter (bind_address=XXX.XXX.XX.XX)
 bind-address = 0.0.0.0
 port        = 3306

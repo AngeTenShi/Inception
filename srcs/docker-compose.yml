@@ -1,11 +1,24 @@
 version: '3.3'
 
 services:
+    wordpress:
+        build: requirements/wordpress
+        container_name: wordpress
+        volumes:
+            - wp-volume:/var/www/html
+            - db-volume:/var/lib/mysql 
+        env_file:
+            - .env
+        depends_on:
+            - mariadb
+        networks:
+            - inception
+        restart: always
     mariadb:
         build: requirements/mariadb
         container_name: mariadb
         volumes:
-            - /home/anggonza/data/mysql:/var/lib/mysql
+            - db-volume:/var/lib/mysql
         env_file:
             - .env
         ports:
@@ -13,7 +26,33 @@ services:
         networks:
             - inception
         restart: always
-
+    nginx:
+        build: requirements/nginx
+        container_name: nginx
+        volumes:
+            - wp-volume:/var/www/html
+        ports:
+            - 443:433
+        restart: always
+        depends_on:
+            - wordpress
+        networks:
+            - inception
 networks:
     inception:
         driver: bridge
+
+volumes:
+  wp-volume:
+    driver: local
+    driver_opts:
+      o: bind
+      type: volume
+      device: /home/anggonza/data/wordpress
+
+  db-volume:
+    driver: local
+    driver_opts:
+      o: bind
+      type: volume
+      device: /home/anggonza/data/mariadb

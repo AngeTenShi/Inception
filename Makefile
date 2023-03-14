@@ -1,7 +1,7 @@
 all: build
 
 build: 
-		docker-compose -f srcs/docker-compose.yml up --build -d
+		docker-compose -f srcs/docker-compose.yml up --build
 
 up:
 	docker-compose --env-file srcs/.env -f srcs/docker-compose.yml up
@@ -13,7 +13,7 @@ ps:
 	docker-compose -f srcs/docker-compose.yml ps
 
 clean: down
-	docker system prune -f
+	docker system prune -af
 
 re:                     clean all
 
