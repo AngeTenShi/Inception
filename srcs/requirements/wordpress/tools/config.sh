@@ -14,9 +14,9 @@ if [ ! -f /var/www/html/wp-config.php ]; then
 
 	wp core download --allow-root && \
 
-	wp config create --dbname=wordpress --dbuser=ange --dbpass=${MYSQL_PASSWORD} --dbhost=mariadb --allow-root && \
+	wp config create --dbname=wordpress --dbuser=anggonza --dbpass=${MYSQL_PASSWORD} --dbhost=mariadb --allow-root && \
 
-	wp core install --url=ange.42.fr --title="Mon site WordPress" --admin_user=ange --admin_password=${WORDPRESS_ADMIN_PASSWORD} --admin_email=ange@42.fr --skip-email --allow-root && \
+	wp core install --url=anggonza.42.fr --title="Mon site WordPress" --admin_user=anggonza --admin_password=${WORDPRESS_ADMIN_PASSWORD} --admin_email=anggonza@42.fr --skip-email --allow-root && \
 
 	wp user create $WORDPRESS_USER_NAME "user@42.fr" --role=author --user_pass=$WORDPRESS_USER_PASSWORD --allow-root
 fi

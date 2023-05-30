@@ -6,9 +6,9 @@ EXPOSE 443
 
 RUN mkdir -p /etc/nginx/ssl && \
 openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes \
-        -out /etc/nginx/ssl/ange.pem \
-        -keyout /etc/nginx/ssl/ange.key \
-        -subj "/C=FR/ST=France/O=42/CN=ange/"
+        -out /etc/nginx/ssl/anggonza.pem \
+        -keyout /etc/nginx/ssl/anggonza.key \
+        -subj "/C=FR/ST=France/O=42/CN=anggonza/"
 
 COPY conf/default.conf /etc/nginx/conf.d/default.conf
 
