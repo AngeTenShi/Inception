@@ -10,7 +10,7 @@ then
   mysql -h localhost -p$MYSQL_ROOT_PASSWORD -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';"
 
   mysql -h localhost -p$MYSQL_ROOT_PASSWORD -e "FLUSH PRIVILEGES;"
-  
+
   mysqladmin -h localhost -u root -p$MYSQL_ROOT_PASSWORD shutdown
 fi
 

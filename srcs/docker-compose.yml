@@ -18,13 +18,14 @@ services:
         container_name: wordpress
         volumes:
             - wp-volume:/var/www/html
-            - db-volume:/var/lib/mysql 
+            - db-volume:/var/lib/mysql
         env_file:
             - .env
         depends_on:
             - mariadb
         networks:
             - inception
+        restart: always
     nginx:
         build: requirements/nginx
         container_name: nginx
@@ -45,13 +46,13 @@ volumes:
   wp-volume:
     driver: local
     driver_opts:
+      type: none
       o: bind
-      type: volume
       device: /home/anggonza/data/wordpress
 
   db-volume:
     driver: local
     driver_opts:
+      type: none
       o: bind
-      type: volume
       device: /home/anggonza/data/mariadb
